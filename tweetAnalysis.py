@@ -20,10 +20,24 @@ text = []
 for tweet in tweets:
     text.append(tweet['text'])
 
-# Create another list for handling screen names
-screenNames = []
-for tweet in tweets:
-    screenNames.append(tweet['screen_name'])
+# Create another list to extra the User key from each entry which contains
+# the value/Dictionary with our screen_name key
+userData = []
+for user in tweets:
+    userData.append(user['user'])
+
+# With our userData list now created, we can now iterate over it again with
+# another for loop
+screenNames= []
+for name in userData:
+    screenNames.append(name['screen_name'])
+
+# Now that we have our two lists, a list of tweet text and screen names, we
+# can use the zip() function to join the values from each and print that zipped
+# list, giving us the user name followed by the tweet
+joined = zip(screenNames, text)
+
+
 
 print "Number of text entries found"
 print len(text)
@@ -46,3 +60,5 @@ for i in text:
 
 for user in screenNames:
     print user
+
+print joined
